@@ -1,8 +1,11 @@
 const express = require("express");
-const { createCanvas } = require("canvas");
+const { createCanvas, registerFont } = require("canvas");
+const path = require("path");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+registerFont("Rubik-ExtraBold.ttf", { family: "Rubik" });
 
 app.get("/gen", (req, res) => {
   const width = 100;
@@ -16,9 +19,9 @@ app.get("/gen", (req, res) => {
 
   // CS text
   ctx.fillStyle = "black";
-  ctx.font = "bold 60px Arial";
+  ctx.font = "bold 45px Rubik";
   ctx.textAlign = "center";
-  ctx.fillText("CS", width / 2, height / 2 - 10);
+  ctx.fillText("CSS", width / 2, height / 2 + 4);
 
   // Bottom section
   ctx.fillStyle = "#700A0A";
@@ -26,8 +29,8 @@ app.get("/gen", (req, res) => {
 
   // 2022 text
   ctx.fillStyle = "white";
-  ctx.font = "bold 30px Arial";
-  ctx.fillText("2022", width / 2, height - 10);
+  ctx.font = "bold 25px Rubik";
+  ctx.fillText("2022", width / 2, height - 5);
 
   // Send image
   res.setHeader("Content-Type", "image/png");
